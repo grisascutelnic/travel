@@ -11,8 +11,9 @@
     src: url(../font/Poppins-Bold.ttf);
 }
 .travol {
-    -webkit-text-stroke: 20px rgb(255, 255, 255); /* Combines stroke width and color */
-    /*-webkit-text-fill-color: transparent; !* Makes the fill color transparent *!*/
+    font-size: 100px;
+    /*-webkit-text-stroke: 20px rgb(255, 255, 255);*/
+    /*-webkit-text-fill-color: transparent;*/
 }
 .photo{
     transform-style: preserve-3d;

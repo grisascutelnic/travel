@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>travel</title>
-    <link rel="stylesheet" href="../css/output.css">
-<%--    <link rel="stylesheet" href="css/output.css?v=1">--%>
+    <title>Travel Planet</title>
+    <link rel="stylesheet" href="/css/output.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 <body class="font-primary">
@@ -15,7 +17,7 @@
             <header 
             class="w-[85%]  xl:w-[73%]  container hidden lg:flex justify-between h-[60px]  items-center py-[45px] border-b-[1px] border-white border-opacity-40">
             <figure class="w-[140px]">
-               <img src="../img/just_logo.png" alt="logo" class="w-[100%]">
+               <img src="/img/just_logo.png" alt="logo" class="w-[100%]">
             </figure>
             <nav class="h-[100%] md:w-[70%]">
                 <ul class="h-[100%] flex items-center gap-8 justify-end">
@@ -28,11 +30,11 @@
                     <li class="list-none"><a class="decoration-none text-white  hover:text-color3 transition-all duration-500"
                             href="">Destination</a></li>
                     <li class="list-none "><a class="decoration-none text-white  hover:text-color3 transition-all duration-500"
-                            href="">Blog</a></li>
+                            th:href="@{/login}">Login</a></li>
                     <li class="list-none"><a class="decoration-none text-white  hover:text-color3 transition-all duration-500"
-                            href="">Gallery</a></li>
+                            th:href="@{/register}">Register</a></li>
                     <li class="list-none"><a class="decoration-none text-white  hover:text-color3 transition-all duration-500"
-                            href="">Contact</a></li>
+                             sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/users}">Users</a></li>
                 </ul>
             </nav>
         </header>
@@ -41,7 +43,7 @@
  <header
  class="w-[95%] sm:w-[70%] md:w-[80%] container flex h-[60px] justify-between  items-center  lg:hidden  py-[45px] relative border-b-[1px] border-white border-opacity-40 ">
  <figure class="w-[140px]">
-    <img src="../img/logo-light.png" alt="" class="w-[100%]">
+    <img src="/img/logo-light.png" alt="" class="w-[100%]">
  </figure>
  <div class=" w-1/2 h-full flex justify-end items-center ">
      <i class="bi bi-list text-3xl text-white cursor-pointer ham-menu-icon"></i>
@@ -78,7 +80,8 @@
    <section class="w-full flex justify-center mt-[180px]">
     <div class="w-[700px] md:w-[900px] container h-auto  ">
         <p class="w-full text-center uppercase text-white tracking-widest [word-spacing:8px] mb-4">Lets travel the world with us</p>
-        <h1 class="w-full text-center text-white text-5xl md:text-7xl font-secondary uppercase tracking-widest">Explore The World With <span class="travol">Travel</span></h1>
+        <h1 class="w-full text-center text-white text-5xl md:text-7xl font-secondary uppercase tracking-widest">Explore The World With <span style="-webkit-text-stroke: 2px rgb(255, 255, 255);
+    -webkit-text-fill-color: transparent;">Travel Planet</span></h1>
     </div>
    </section>
    <section class="w-full justify-center mt-[80px] hidden lg:flex relative">
@@ -146,7 +149,7 @@
                 <div class=" w-full lg:w-[50%]   flex flex-col justify-center items-center bg-color5 h-auto pb-8 lg:pb-0 mt-10 lg:mt-0 ">
                         <figure class="w-[70%] h-[500px] relative">
                                 <div class="w-[100%] h-[100%] bg-color4 absolute left-8 top-8"></div>
-                                <img src="../img/about.jpeg" alt="" class="w-[100%] h-[100%] absolute z-10 object-cover hover:scale-[.95] transition-all duration-500">
+                                <img src="/img/about.jpeg" alt="" class="w-[100%] h-[100%] absolute z-10 object-cover hover:scale-[.95] transition-all duration-500">
                         </figure>
                 </div>
         </div>
@@ -170,7 +173,7 @@
                                                 </div>
                                                 <a href="" class="underline decoration-color1 text-color6 flex mb-2">Tour details</a>
                                         </div>
-                                        <img src="../img/maldives1.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
+                                        <img src="/img/maldives1.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
                                         <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-1 top-12 rotate-[-90deg] ">Maldives</p>
                                         <figcaption class="absolute text-white bottom-8 right-10 fig">
                                                 <p class="capitalize font-secondary text-3xl">Maldives tours</p>
@@ -190,7 +193,7 @@
                                                 </div>
                                                 <a href="" class="underline decoration-color1 text-color6 flex mb-2">Tour details</a>
                                         </div>
-                                        <img src="../img/2.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
+                                        <img src="/img/2.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
                                         <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-1 top-12 rotate-[-90deg] ">italy</p>
                                         <figcaption class="absolute text-white bottom-8 right-10 fig">
                                                 <p class="capitalize font-secondary text-3xl">Roma</p>
@@ -210,7 +213,7 @@
                                                 </div>
                                                 <a href="" class="underline decoration-color1 text-color6 flex mb-2">Tour details</a>
                                         </div>
-                                        <img src="../img/france1.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
+                                        <img src="/img/france1.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
                                         <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-1 top-12 rotate-[-90deg] ">France</p>
                                         <figcaption class="absolute text-white bottom-8 right-10 fig">
                                                 <p class="capitalize font-secondary text-3xl">France</p>
@@ -230,7 +233,7 @@
                                                 </div>
                                                 <a href="" class="underline decoration-color1 text-color6 flex mb-2">Tour details</a>
                                         </div>
-                                        <img src="../img/greece1.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
+                                        <img src="/img/greece1.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
                                         <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-[-15px] top-12 rotate-[-90deg] ">greece</p>
                                         <figcaption class="absolute text-white bottom-8 right-10 fig">
                                                 <p class="capitalize font-secondary text-3xl">greece tours</p>
@@ -250,7 +253,7 @@
                                                 </div>
                                                 <a href="" class="underline decoration-color1 text-color6 flex mb-2">Tour details</a>
                                         </div>
-                                        <img src="../img/canada1.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
+                                        <img src="/img/canada1.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
                                         <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-[-15px] top-12 rotate-[-90deg] ">canada</p>
                                         <figcaption class="absolute text-white bottom-8 right-10 fig">
                                                 <p class="capitalize font-secondary text-3xl">canada tours</p>
@@ -270,7 +273,7 @@
                                                 </div>
                                                 <a href="" class="underline decoration-color1 text-color6 flex mb-2">Tour details</a>
                                         </div>
-                                        <img src="../img/44-1.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
+                                        <img src="/img/44-1.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
                                         <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-[-15px] top-12 rotate-[-90deg] ">dubai</p>
                                         <figcaption class="absolute text-white bottom-8 right-10 fig">
                                                 <p class="capitalize font-secondary text-3xl">dubai</p>
@@ -316,7 +319,7 @@
                 <p class="text-3xl sm:text-5xl font-secondary text-color1 px-5">Travel <span class=" text-color3">Countries</span></p>
                 <div class="w-full flex lg:relative py-10 flex-wrap lg:px-3 xl:px-0 px-6">
                         <figure class="w-full lg:w-[70%] lg:absolute">
-                                <img src="../img/2.jpg" alt="" class="w-[100%]">
+                                <img src="/img/2.jpg" alt="" class="w-[100%]">
                         </figure>
                         <div class="w-full lg:w-[50%] lg:absolute lg:h-[400px] bg-map bg-no-repeat bg-center z-10 lg:right-0 xl:top-[170%] md:top-20 px-10 py-16 bg-white" >
                                 <p class="uppercase text-color1">Travel Countries</p>
@@ -353,7 +356,7 @@
                         <p class="text-5xl font-secondary text-color3 px-5">Popular <span class="text-color1">Destination</span></p>
                         <div class="flex flex-wrap justify-center xl:justify-between gap-10 px-6 xl:px-0 py-8 lg:px-3 ">
                                 <figure class="w-full md:w-[45%] xl:w-[30%] h-[450px] relative  transition-all duration-1000 overflow-hidden group ">   
-                                        <img src="../img/canada1-1.jpeg" alt="" class="w-[100%] h-[100%] object-cover group-hover:brightness-75 group-hover:scale-[1.2] absolute transition-all duration-1000">
+                                        <img src="/img/canada1-1.jpeg" alt="" class="w-[100%] h-[100%] object-cover group-hover:brightness-75 group-hover:scale-[1.2] absolute transition-all duration-1000">
                                         <p class="absolute uppercase text-white bg-color1 px-4 py-1 right-1 top-12 rotate-[-90deg] ">2 Tours</p>
                                         <figcaption class="absolute text-white bottom-[20px] left-5  group-hover:bottom-[50px]  transition-all duration-700 w-full  ">
                                                <div class="flex after:contetn-[''] after:h-[1px] after:bg-op-50 after:w-[20%] after:bg-white after:absolute after:bottom-[-8px] group-hover:after:w-[90%]  after:transition-all after:duration-1000" ><i class="bi bi-geo-alt text-2xl text-white me-2"></i> <p class="capitalize font-secondary text-3xl">Canada</p></div>
@@ -365,7 +368,7 @@
                                         </figcaption>
                                 </figure>
                                 <figure class="w-full md:w-[45%] xl:w-[30%] h-[450px] relative  transition-all duration-1000 overflow-hidden group ">   
-                                        <img src="../img/maldives1-1.jpeg" alt="" class="w-[100%] h-[100%] object-cover group-hover:brightness-75 group-hover:scale-[1.2] absolute transition-all duration-1000">
+                                        <img src="/img/maldives1-1.jpeg" alt="" class="w-[100%] h-[100%] object-cover group-hover:brightness-75 group-hover:scale-[1.2] absolute transition-all duration-1000">
                                         <p class="absolute uppercase text-white bg-color1 px-4 py-1 right-1 top-12 rotate-[-90deg] ">2 Tours</p>
                                         <figcaption class="absolute text-white bottom-[20px] left-5  group-hover:bottom-[50px]  transition-all duration-700 w-full  ">
                                                <div class="flex after:contetn-[''] after:h-[1px] after:bg-op-50 after:w-[20%] after:bg-white after:absolute after:bottom-[-8px] group-hover:after:w-[90%]  after:transition-all after:duration-1000" ><i class="bi bi-geo-alt text-2xl text-white me-2"></i> <p class="capitalize font-secondary text-3xl">Maldives</p></div>
@@ -377,7 +380,7 @@
                                         </figcaption>
                                 </figure>
                                 <figure class="w-full md:w-[45%] xl:w-[30%] h-[450px] relative  transition-all duration-1000 overflow-hidden group ">   
-                                        <img src="../img/italy1.jpeg" alt="" class="w-[100%] h-[100%] object-cover group-hover:brightness-75 group-hover:scale-[1.2] absolute transition-all duration-1000">
+                                        <img src="/img/italy1.jpeg" alt="" class="w-[100%] h-[100%] object-cover group-hover:brightness-75 group-hover:scale-[1.2] absolute transition-all duration-1000">
                                         <p class="absolute uppercase text-white bg-color1 px-4 py-1 right-1 top-12 rotate-[-90deg] ">6 Tours</p>
                                         <figcaption class="absolute text-white bottom-[20px] left-5  group-hover:bottom-[50px]  transition-all duration-700 w-full  ">
                                                <div class="flex after:contetn-[''] after:h-[1px] after:bg-op-50 after:w-[20%] after:bg-white after:absolute after:bottom-[-8px] group-hover:after:w-[90%]  after:transition-all after:duration-1000" ><i class="bi bi-geo-alt text-2xl text-white me-2"></i> <p class="capitalize font-secondary text-3xl">Italy</p></div>
@@ -399,7 +402,7 @@
                         <p class="text-5xl font-secondary text-color4 px-5">Travel<span class="text-white"> Experience</span></p>
                         <div class="flex flex-wrap justify-center xl:justify-between gap-10 px-6 xl:px-0 py-8 lg:px-3 ">
                                 <figure class="w-full md:w-[45%] xl:w-[30%] h-[450px] relative  transition-all duration-1000  group mb-20   ">   
-                                   <div class="w-[100%] h-[100%] overflow-hidden group transition-all duration-1000 relative">     <img src="../img/22.jpeg" alt="" class="w-[100%] h-[100%] object-cover group-hover:brightness-75 group-hover:scale-[1.2] absolute transition-all duration-1000"></div>
+                                   <div class="w-[100%] h-[100%] overflow-hidden group transition-all duration-1000 relative">     <img src="/img/22.jpeg" alt="" class="w-[100%] h-[100%] object-cover group-hover:brightness-75 group-hover:scale-[1.2] absolute transition-all duration-1000"></div>
                                         <div class="absolute uppercase text-white bg-color1 px-2 left-3 top-12 flex flex-col items-center "><p>Aug</p><p class="font-bold">02</p></div>
                                         <figcaption class=" absolute h-[150px] w-[85%]  bg-white bottom-[-80px]  left-[8%] flex flex-col justify-center px-8 group-hover:bottom-10 transition-all duration-1000 ">
                                                 <p class="uppercase text-color4">Tours</p>
@@ -407,7 +410,7 @@
                                         </figcaption>
                                 </figure>
                                 <figure class="w-full md:w-[45%] xl:w-[30%] h-[450px] relative  transition-all duration-1000  group mb-20   ">   
-                                        <div class="w-[100%] h-[100%] overflow-hidden group transition-all duration-1000 relative">     <img src="../img/11.jpeg" alt="" class="w-[100%] h-[100%] object-cover group-hover:brightness-75 group-hover:scale-[1.2] absolute transition-all duration-1000"></div>
+                                        <div class="w-[100%] h-[100%] overflow-hidden group transition-all duration-1000 relative">     <img src="/img/11.jpeg" alt="" class="w-[100%] h-[100%] object-cover group-hover:brightness-75 group-hover:scale-[1.2] absolute transition-all duration-1000"></div>
                                              <div class="absolute uppercase text-white bg-color1 px-2 left-3 top-12 flex flex-col items-center "><p>Aug</p><p class="font-bold">07</p></div>
                                              <figcaption class=" absolute h-[150px] w-[85%]  bg-white bottom-[-80px]  left-[8%] flex flex-col justify-center px-3 group-hover:bottom-10 transition-all duration-1000 ">
                                                      <p class="uppercase text-color4">travel</p>
@@ -415,7 +418,7 @@
                                              </figcaption>
                                      </figure>
                                      <figure class="w-full md:w-[45%] xl:w-[30%] h-[450px] relative  transition-all duration-1000  group mb-20   ">   
-                                        <div class="w-[100%] h-[100%] overflow-hidden group transition-all duration-1000 relative">     <img src="../img/18-1.jpeg" alt="" class="w-[100%] h-[100%] object-cover group-hover:brightness-75 group-hover:scale-[1.2] absolute transition-all duration-1000"></div>
+                                        <div class="w-[100%] h-[100%] overflow-hidden group transition-all duration-1000 relative">     <img src="/img/18-1.jpeg" alt="" class="w-[100%] h-[100%] object-cover group-hover:brightness-75 group-hover:scale-[1.2] absolute transition-all duration-1000"></div>
                                              <div class="absolute uppercase text-white bg-color1 px-2 left-3 top-12 flex flex-col items-center "><p>Aug</p><p class="font-bold">02</p></div>
                                              <figcaption class=" absolute h-[150px] w-[85%]  bg-white bottom-[-80px]  left-[8%] flex flex-col justify-center px-5 group-hover:bottom-10 transition-all duration-1000 ">
                                                      <p class="uppercase text-color4">Destinations</p>
@@ -429,16 +432,16 @@
     <section class="w-full flex justify-center bg-color7 overflow-hidden  ">
         <div class="w-full container flex whitespace-nowrap overflow-hidden group  ">
              <div class="flex  logos-slide animate-anime w-full flex-wrap whitespace-nowrap group-hover:pause  ">
-                <figure class="w-[25%] "><img src="../img/1.png" alt="" w-[100%]></figure>
-                <figure class="w-[25%] "><img src="../img/2.png" alt="" w-[100%]></figure>
-                <figure class="w-[25%]  "><img src="../img/3.png" alt="" w-[100%]></figure>
-                <figure class="w-[25%]  "><img src="../img/4.png" alt="" w-[100%]></figure>
+                <figure class="w-[25%] "><img src="/img/1.png" alt="" w-[100%]></figure>
+                <figure class="w-[25%] "><img src="/img/2.png" alt="" w-[100%]></figure>
+                <figure class="w-[25%]  "><img src="/img/3.png" alt="" w-[100%]></figure>
+                <figure class="w-[25%]  "><img src="/img/4.png" alt="" w-[100%]></figure>
              </div>
              <div class="flex  logos-slide  w-full flex-wrap  whitespace-nowrap ms-[-200%] animate-anime group-hover:pause ">
-                <figure class="w-[25%] "><img src="../img/1.png" alt="" w-[100%]></figure>
-                <figure class="w-[25%] "><img src="../img/2.png" alt="" w-[100%]></figure>
-                <figure class="w-[25%]  "><img src="../img/3.png" alt="" w-[100%]></figure>
-                <figure class="w-[25%]  "><img src="../img/4.png" alt="" w-[100%]></figure>
+                <figure class="w-[25%] "><img src="/img/1.png" alt="" w-[100%]></figure>
+                <figure class="w-[25%] "><img src="/img/2.png" alt="" w-[100%]></figure>
+                <figure class="w-[25%]  "><img src="/img/3.png" alt="" w-[100%]></figure>
+                <figure class="w-[25%]  "><img src="/img/4.png" alt="" w-[100%]></figure>
              </div>
                </div>
     </section>
@@ -461,7 +464,7 @@
                 <div class="flex  justify-between  my-10 flex-wrap  ">
                         <div class="w-full md:w-[30%] flex flex-col py-2  my-5 px-6 " >
                                 <figure class="w-[80%]">
-                                        <img src="../img/logo-light.png" alt="" class="w-[100%]">
+                                        <img src="/img/logo-light.png" alt="" class="w-[100%]">
                                 </figure>
                                 <p class="text-color6 my-5">Quisque imperdiet sapien porttito the bibendum sellentesque the commodo erat acar accumsa lobortis, enim diam the nesuen.</p>
                                 <ul class="flex  ">
@@ -490,5 +493,6 @@
     </section>
     </main>
 </body>
-<script src="../js/master.js"></script>
+<script src="/js/master.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFZcT9a4U/FTb8PI2F8aon2nD8D1Sp3olLlAlo59R2FETc5pXbKMG8LEv5" crossorigin="anonymous"></script>
 </html>
