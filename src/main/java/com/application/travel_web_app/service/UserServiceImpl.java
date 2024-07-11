@@ -57,12 +57,25 @@ public class UserServiceImpl implements UserService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public void updateUserRole(Long id, String roleName) {
+        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        Role role = roleRepository.findByName(roleName);
+        user.getRoles().add(role);
+        userRepository.save(user);
+    }
+
     private UserDto mapToIserDto(User user) {
         UserDto userDto = new UserDto();
         String[] str = user.getName().split(" ");
         userDto.setFirstName(str[0]);
         userDto.setLastName(str[1]);
         userDto.setEmail(user.getEmail());
+        userDto.setRoles(user.getRoles().stream()
+                .map(Role::getName)
+                .collect(Collectors.toList()));
         return userDto;
     }
+
+
 }

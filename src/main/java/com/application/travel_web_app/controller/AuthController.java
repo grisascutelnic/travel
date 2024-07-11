@@ -10,6 +10,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -52,6 +54,7 @@ public class AuthController {
 
     @GetMapping("/users")
     public String users(Model model) {
+//        System.out.println("USERSSSS");
         List<UserDto> users = userService.findAllUsers();
         model.addAttribute("users", users);
         return "users";
@@ -61,4 +64,18 @@ public class AuthController {
     public String login() {
         return "login";
     }
+
+    @PostMapping("/users/makeAdmin")
+    public String makeAdmin(@RequestParam("id") Long id, RedirectAttributes redirectAttributes) {
+        System.out.println("Form submitted");
+        if (id == null) {
+            System.out.println("Id-ul este null");
+        } else {
+            System.out.println("Id-ul este: " + id);
+        }
+        userService.updateUserRole(id, "ROLE_ADMIN");
+        redirectAttributes.addFlashAttribute("message", "User role updated to Administrator.");
+        return "redirect:/users";
+    }
+
 }

@@ -7,20 +7,22 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDto {
     private Long id;
-    @NotEmpty
+    @NotEmpty(message = "First name must not be empty")
     private String firstName;
-    @NotEmpty
+    @NotEmpty(message = "Last name must not be empty")
     private String lastName;
-    @NotEmpty
+    @NotEmpty(message = "Email must not be empty")
     @Email
     private String email;
-    @NotEmpty
+    @NotEmpty(message = "Password must not be empty")
     private String password;
-
+    private List<String> roles;
 }
