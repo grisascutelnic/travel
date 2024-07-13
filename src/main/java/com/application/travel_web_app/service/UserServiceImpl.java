@@ -41,6 +41,7 @@ public class UserServiceImpl implements UserService {
         Role role = roleRepository.findByName("ROLE_USER");
 
         user.setRoles(Arrays.asList(role));
+//        user.getRoles().add(role);
         userRepository.save(user);
     }
 
@@ -68,6 +69,7 @@ public class UserServiceImpl implements UserService {
     private UserDto mapToIserDto(User user) {
         UserDto userDto = new UserDto();
         String[] str = user.getName().split(" ");
+        userDto.setId(user.getId());
         userDto.setFirstName(str[0]);
         userDto.setLastName(str[1]);
         userDto.setEmail(user.getEmail());

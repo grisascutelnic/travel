@@ -128,19 +128,20 @@
 
                     <form th:action="@{/users/makeAdmin}" method="post" style="display:inline;">
                         <input type="hidden" name="id" th:value="${user.id}">
-                        <button type="submit" class="btn btn-sm btn-success">Make Administrator</button>
+                        <button type="submit" class="btn btn-sm btn-success">Make Admin</button>
                     </form>
 
-                    <form th:action="@{/users/makeModerator}" method="post" style="display:inline;">
-                        <input type="hidden" name="id" th:value="${user.id}">
-                        <button type="submit" class="btn btn-sm btn-warning">Make Moderator</button>
-                    </form>
+<!--                    <form th:action="@{/users/makeModerator}" method="post" style="display:inline;">-->
+<!--                        <input type="hidden" name="id" th:value="${user.id}">-->
+<!--                        <button type="submit" class="btn btn-sm btn-warning">Make Moderator</button>-->
+<!--                    </form>-->
 
-                    <form th:action="@{/users/makeUser}" method="post" style="display:inline;">
-                        <input type="hidden" name="id" th:value="${user.id}">
-                        <button type="submit" class="btn btn-sm btn-secondary">Make User</button>
-                    </form>
-<!--                    <span th:each="role : ${user.roles}">-->
+<!--                    <form th:action="@{/users/makeUser}" method="post" style="display:inline;">-->
+<!--                        <input type="hidden" name="id" th:value="${user.id}">-->
+<!--                        <button type="submit" class="btn btn-sm btn-secondary">Make User</button>-->
+<!--                    </form>-->
+
+                    <!--                    <span th:each="role : ${user.roles}">-->
 <!--                        <button th:if="${role != 'ROLE_ADMIN'}" class="btn btn-sm"  style="background-color: #eb1d51" onclick="#admin">Make Admin</button>-->
 <!--                        <button th:if="${role != 'ROLE_MOD'}" class="btn btn-sm btn-warning" onclick="#mod">Make Mod</button>-->
 <!--                        <button th:if="${role != 'ROLE_USER'}" class="btn btn-sm btn-secondary" onclick="#user">Make User</button>-->

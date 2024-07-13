@@ -66,15 +66,8 @@ public class AuthController {
     }
 
     @PostMapping("/users/makeAdmin")
-    public String makeAdmin(@RequestParam("id") Long id, RedirectAttributes redirectAttributes) {
-        System.out.println("Form submitted");
-        if (id == null) {
-            System.out.println("Id-ul este null");
-        } else {
-            System.out.println("Id-ul este: " + id);
-        }
+    public String makeAdmin(@RequestParam(name = "id") Long id) {
         userService.updateUserRole(id, "ROLE_ADMIN");
-        redirectAttributes.addFlashAttribute("message", "User role updated to Administrator.");
         return "redirect:/users";
     }
 
