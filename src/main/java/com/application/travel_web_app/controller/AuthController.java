@@ -71,4 +71,15 @@ public class AuthController {
         return "redirect:/users";
     }
 
+    @PostMapping("/users/makeMod")
+    public String makeMod(@RequestParam(name = "id") Long id) {
+        userService.updateUserRole(id, "ROLE_MOD");
+        return "redirect:/users";
+    }
+
+    @PostMapping("/users/makeUser")
+    public String makeUser(@RequestParam(name = "id") Long id) {
+        userService.updateUserRole(id, "ROLE_USER");
+        return "redirect:/users";
+    }
 }
