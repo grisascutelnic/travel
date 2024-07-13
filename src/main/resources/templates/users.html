@@ -113,19 +113,19 @@
                         <span th:if="${role == 'ROLE_ADMIN'}" class="btn btn-sm"  style="background-color: #eb1d51">Admin</span>
                     </span>
                 </td>
-                <td class="role-buttons">
+                <td class="role-buttons" th:each="role: ${user.roles}">
 
-                    <form th:action="@{/users/makeAdmin}" method="post" style="display:inline;">
+                    <form th:if="${role == 'ROLE_MOD' || role == 'ROLE_USER'}" th:action="@{/users/makeAdmin}" method="post" style="display:inline;">
                         <input type="hidden" name="id" th:value="${user.id}">
                         <button type="submit" class="btn btn-sm btn-scucces" style="color: black; border-color: #eb1d51;">Make Admin</button>
                     </form>
 
-                    <form th:action="@{/users/makeMod}" method="post" style="display:inline;">
+                    <form th:if="${role == 'ROLE_ADMIN' || role == 'ROLE_USER'}" th:action="@{/users/makeMod}" method="post" style="display:inline;">
                         <input type="hidden" name="id" th:value="${user.id}">
                         <button type="submit" class="btn btn-sm btn-warning">Make Mod</button>
                     </form>
 
-                    <form th:action="@{/users/makeUser}" method="post" style="display:inline;">
+                    <form th:if="${role == 'ROLE_ADMIN' || role == 'ROLE_MOD'}" th:action="@{/users/makeUser}" method="post" style="display:inline;">
                         <input type="hidden" name="id" th:value="${user.id}">
                         <button type="submit" class="btn btn-sm btn-secondary" style="color: black;">Make User</button>
                     </form>

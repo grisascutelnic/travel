@@ -4,6 +4,7 @@ import com.application.travel_web_app.dto.UserDto;
 import com.application.travel_web_app.entity.User;
 import com.application.travel_web_app.service.UserService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,23 +12,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import java.util.List;
 
 @Controller
 public class AuthController {
 
+    @Autowired
     private UserService userService;
-
-    public AuthController(UserService userService) {
-        this.userService = userService;
-    }
-
-    @GetMapping("/index")
-    public String home() {
-        return "index";
-    }
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
@@ -63,23 +56,5 @@ public class AuthController {
     @GetMapping("/login")
     public String login() {
         return "login";
-    }
-
-    @PostMapping("/users/makeAdmin")
-    public String makeAdmin(@RequestParam(name = "id") Long id) {
-        userService.updateUserRole(id, "ROLE_ADMIN");
-        return "redirect:/users";
-    }
-
-    @PostMapping("/users/makeMod")
-    public String makeMod(@RequestParam(name = "id") Long id) {
-        userService.updateUserRole(id, "ROLE_MOD");
-        return "redirect:/users";
-    }
-
-    @PostMapping("/users/makeUser")
-    public String makeUser(@RequestParam(name = "id") Long id) {
-        userService.updateUserRole(id, "ROLE_USER");
-        return "redirect:/users";
     }
 }
