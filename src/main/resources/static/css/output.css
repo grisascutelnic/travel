@@ -1344,12 +1344,14 @@ video {
   /*-webkit-text-fill-color: transparent;*/
 }
 
-.photo{
+.photo {
+  position: relative;
   transform-style: preserve-3d;
+  transition: transform 1s ease-in-out;
 }
 
-.photo:hover{
-  transform:perspective(800px) rotateY(-180deg);
+.rotate-180 {
+  transform: perspective(800px) rotateY(-180deg);
 }
 
 .bottom-photo{
@@ -1729,6 +1731,12 @@ video {
 
   .xl\:w-\[30\%\] {
     width: 30%;
+  }
+  .xl\:w-\[20\%\] {
+    width: 20%;
+  }
+  .xl\:w-\[40\%\] {
+    width: 40%;
   }
 
   .xl\:w-\[73\%\] {

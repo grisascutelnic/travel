@@ -14,7 +14,8 @@ import lombok.Setter;
 public class TourDto {
     private Long id;
     private String country;
-    private double price;
+    private int price;
     private String description;
     private int days;
+    private byte[] image;
 }
