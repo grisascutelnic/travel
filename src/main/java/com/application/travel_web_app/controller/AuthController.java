@@ -24,8 +24,8 @@ public class AuthController {
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
-        UserDto user = new UserDto();
-        model.addAttribute("user", user);
+        UserDto userDto = new UserDto();
+        model.addAttribute("user", userDto);
         return "register";
     }
 
@@ -47,7 +47,6 @@ public class AuthController {
 
     @GetMapping("/users")
     public String users(Model model) {
-//        System.out.println("USERSSSS");
         List<UserDto> users = userService.findAllUsers();
         model.addAttribute("users", users);
         return "users";

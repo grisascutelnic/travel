@@ -1,30 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>New Tour</title>
+    <title>Edit Tour</title>
 </head>
 <body>
-<h1>Create New Tour</h1>
-<form th:action="@{/saveTourx}" method="post" th:object="${tourDto}" enctype="multipart/form-data">
+<h1>Edit Tour</h1>
+<form th:action="@{/updateTour}" method="post" th:object="${tour}" enctype="multipart/form-data">
+    <div>
+        <input type="hidden" id="id" name="id" th:value="${tour.id}" />
+    </div>
     <div>
         <label for="country">Country:</label>
-        <input type="text" id="country" th:field="*{country}" required />
+        <input type="text" id="country" name="country" th:value="${tour.country}" required />
     </div>
     <div>
         <label for="price">Price:</label>
-        <input type="number" id="price" th:field="*{price}" required />
+        <input type="number" id="price" name="price" th:value="${tour.price}" required />
     </div>
     <div>
         <label for="description">Description:</label>
-        <textarea id="description" th:field="*{description}" required></textarea>
+        <textarea id="description" name="description" th:text="${tour.description}" required></textarea>
     </div>
     <div>
         <label for="days">Days:</label>
-        <input type="number" id="days" th:field="*{days}" required />
+        <input type="number" id="days" name="days" th:value="${tour.days}" required />
     </div>
     <div>
-        <label for="image">Image:</label>
-        <input type="file" id="image" name="imageFile" required />
+        <label for="image">Current Image:</label><br>
+        <img th:src="'data:image/jpeg;base64,' + ${tour.base64Image}" alt="Tour Image" class="w-full h-full object-cover" style="width: 100px; height: 100px;"><br><br>
+
+        <label for="image">New Image:</label>
+        <input type="file" id="image" name="imageFile"/>
     </div>
     <div>
         <button type="submit">Save Tour</button>
