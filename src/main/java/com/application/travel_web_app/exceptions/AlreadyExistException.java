@@ -2,11 +2,11 @@ package com.application.travel_web_app.exceptions;
 
 import org.springframework.http.HttpStatus;
 
-public class AlreadyExistError extends RuntimeException{
+public class AlreadyExistException extends RuntimeException{
     private String message;
     private HttpStatus status = HttpStatus.CONFLICT;
 
-    public AlreadyExistError(String message) {
+    public AlreadyExistException(String message) {
         this.message = message;
     }
 

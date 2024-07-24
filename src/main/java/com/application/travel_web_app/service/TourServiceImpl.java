@@ -1,14 +1,10 @@
 package com.application.travel_web_app.service;
 
 import com.application.travel_web_app.entity.Tour;
-import com.application.travel_web_app.entity.User;
-import com.application.travel_web_app.exceptions.NotFoundError;
+import com.application.travel_web_app.exceptions.NotFoundException;
 import com.application.travel_web_app.repository.TourRepository;
 import com.application.travel_web_app.repository.UserRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -59,7 +55,7 @@ public class TourServiceImpl implements TourService{
         if(tourRepository.existsById(id)) {
             tourRepository.deleteById(id);
         } else {
-            throw new NotFoundError("Not found a rental with id: " + id);
+            throw new NotFoundException("Not found a rental with id: " + id);
         }
     }
 

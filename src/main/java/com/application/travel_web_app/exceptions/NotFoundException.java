@@ -1,13 +1,11 @@
 package com.application.travel_web_app.exceptions;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.http.HttpStatus;
 
-public class NotFoundError extends RuntimeException{
+public class NotFoundException extends RuntimeException{
     private String message;
     private HttpStatus status = HttpStatus.NOT_FOUND;
 
-    public NotFoundError(String message) {
+    public NotFoundException(String message) {
         this.message = message;
     }
 

@@ -3,6 +3,7 @@ package com.application.travel_web_app.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -14,7 +15,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-public class SpringSecurity {
+public class SpringSecurityConfig {
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -31,7 +32,7 @@ public class SpringSecurity {
                         authorize
                                 .requestMatchers("/css/**", "/js/**", "/img/**", "/font/**").permitAll()
                                 .requestMatchers("/register/**").permitAll()
-                                .requestMatchers("/index","/**").permitAll()
+                                .requestMatchers("/index","/**", "/editTour/**").permitAll()
                                 .requestMatchers("/users/**").hasRole("ADMIN")
                 ).formLogin(
                         form -> form

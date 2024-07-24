@@ -4,9 +4,8 @@ import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.application.travel_web_app.exceptions.AlreadyExistError;
-import com.application.travel_web_app.exceptions.NotFoundError;
-import org.springframework.http.HttpStatus;
+import com.application.travel_web_app.exceptions.AlreadyExistException;
+import com.application.travel_web_app.exceptions.NotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -14,8 +13,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ExceptionHandlerConfig {
 
-    @ExceptionHandler(NotFoundError.class)
-    private ResponseEntity<Object> notFoundException(NotFoundError notFoundException) {
+    @ExceptionHandler(NotFoundException.class)
+    private ResponseEntity<Object> notFoundException(NotFoundException notFoundException) {
         Map<String, String> map = new HashMap<>();
 
         map.put("timestamp", Instant.now().toString());
@@ -25,8 +24,8 @@ public class ExceptionHandlerConfig {
         return ResponseEntity.status(notFoundException.getStatus()).body(map);
     }
 
-    @ExceptionHandler(AlreadyExistError.class)
-    private ResponseEntity<Object> alreadyExistException(AlreadyExistError alreadyExistException) {
+    @ExceptionHandler(AlreadyExistException.class)
+    private ResponseEntity<Object> alreadyExistException(AlreadyExistException alreadyExistException) {
         Map<String, String> map = new HashMap<>();
 
         map.put("timestamp", Instant.now().toString());
