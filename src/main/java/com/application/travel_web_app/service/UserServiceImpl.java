@@ -51,14 +51,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDto> findAllUsers() {
-        List<User> users = userRepository.findAll();
-        return users.stream()
-                .map((user) -> mapToIserDto(user))
-                .collect(Collectors.toList());
-    }
-
-    @Override
     public void updateUserRole(Long id, String roleName) {
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
         Role role = roleRepository.findByName(roleName);
@@ -67,7 +59,15 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
-    private UserDto mapToIserDto(User user) {
+    @Override
+    public List<UserDto> findAllUsers() {
+        List<User> users = userRepository.findAll();
+        return users.stream()
+                .map((user) -> mapToUserDto(user))
+                .collect(Collectors.toList());
+    }
+
+    private UserDto mapToUserDto(User user) {
         UserDto userDto = new UserDto();
         String[] str = user.getName().split(" ");
         userDto.setId(user.getId());
@@ -82,3 +82,4 @@ public class UserServiceImpl implements UserService {
 
 
 }
+

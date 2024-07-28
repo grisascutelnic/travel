@@ -1,4 +1,5 @@
 package com.application.travel_web_app.exceptions;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,11 +10,12 @@ import org.springframework.http.HttpStatus;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class NotFoundException extends RuntimeException{
+public class InternalServerErrorException extends RuntimeException {
     private String message;
-    private HttpStatus status = HttpStatus.NOT_FOUND;
-
-    public NotFoundException(String message) {
+    private HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+    public InternalServerErrorException(String message) {
+        super(message);
         this.message = message;
     }
+
 }

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.application.travel_web_app.exceptions.AlreadyExistException;
+import com.application.travel_web_app.exceptions.InternalServerErrorException;
 import com.application.travel_web_app.exceptions.NotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -33,5 +34,16 @@ public class ExceptionHandlerConfig {
         map.put("status", alreadyExistException.getStatus().toString());
 
         return ResponseEntity.status(alreadyExistException.getStatus()).body(map);
+    }
+
+    @ExceptionHandler(InternalServerErrorException.class)
+    private ResponseEntity<Object> internalServerErrorException(InternalServerErrorException internalServerErrorException) {
+        Map<String, String> map = new HashMap<>();
+
+        map.put("timestamp", Instant.now().toString());
+        map.put("message", internalServerErrorException.getMessage());
+        map.put("status", internalServerErrorException.getStatus().toString());
+
+        return ResponseEntity.status(internalServerErrorException.getStatus()).body(map);
     }
 }

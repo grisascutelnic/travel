@@ -1,10 +1,13 @@
 package com.application.travel_web_app.service;
 
 import com.application.travel_web_app.entity.Tour;
+import com.application.travel_web_app.exceptions.InternalServerErrorException;
 import com.application.travel_web_app.exceptions.NotFoundException;
 import com.application.travel_web_app.repository.TourRepository;
 import com.application.travel_web_app.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,8 +19,6 @@ public class TourServiceImpl implements TourService{
 
     @Autowired
     private TourRepository tourRepository;
-    @Autowired
-    private UserRepository userRepository;
 
     public List<Tour> getAllTours() {
         return tourRepository.findAll();
@@ -30,25 +31,28 @@ public class TourServiceImpl implements TourService{
 
     @Override
     public void updateTour(Tour updatedTour, MultipartFile imageFile) {
-        Tour tour = tourRepository.findById(updatedTour.getId()).orElseThrow(() -> new IllegalArgumentException("invalid tour id" + updatedTour.getId()));
-        tour.setCountry(updatedTour.getCountry());
-        tour.setDescription(updatedTour.getDescription());
-        tour.setPrice(updatedTour.getPrice());
-        tour.setDays(updatedTour.getDays());
+        try {
+            Tour tour = tourRepository.findById(updatedTour.getId())
+                    .orElseThrow(() -> new NotFoundException("Invalid tour id: " + updatedTour.getId()));
+            tour.setCountry(updatedTour.getCountry());
+            tour.setCity(updatedTour.getCity());
+            tour.setDescription(updatedTour.getDescription());
+            tour.setPrice(updatedTour.getPrice());
+            tour.setDays(updatedTour.getDays());
 
-        //Verificam daca imaginea este modificata sau ramane acea din turul precedent
-        if (!imageFile.isEmpty()) {
-            try {
-                byte[] imageBytes = imageFile.getBytes();
-                tour.setImage(imageBytes);
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (!imageFile.isEmpty()) {
+                try {
+                    byte[] imageBytes = imageFile.getBytes();
+                    tour.setImage(imageBytes);
+                } catch (IOException e) {
+                    throw new InternalServerErrorException("Failed to save image", HttpStatus.INTERNAL_SERVER_ERROR);
+                }
             }
-        } else {
-            tour.setImage(tour.getImage());
-        }
 
-        tourRepository.save(tour);
+            tourRepository.save(tour);
+        } catch (Exception e) {
+            throw new InternalServerErrorException("An unexpected error occurred", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     public void deleteTour(Long id) {
@@ -66,6 +70,7 @@ public class TourServiceImpl implements TourService{
         newTour.setDescription(tour.getDescription());
         newTour.setPrice(tour.getPrice());
         newTour.setDays(tour.getDays());
+        newTour.setCity(tour.getCity());
 
         try {
             if (!imageFile.isEmpty()) {

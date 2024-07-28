@@ -1,6 +1,7 @@
 package com.application.travel_web_app.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,9 +24,13 @@ public class Tour {
     @Column(name = "country")
     private String country;
 
+    @Column(name = "city")
+    private String city;
+
     @Column(name = "price")
     private int price;
 
+    @Size(max = 300)
     @Column(name = "description")
     private String description;
 

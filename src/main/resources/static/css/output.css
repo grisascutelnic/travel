@@ -858,6 +858,56 @@ video {
   width: 100%;
 }
 
+/* For the edit and delete buttons in Tours */
+.bg-blue-500 {
+  background-color: #3B82F6;
+}
+.hover\:bg-blue-600:hover {
+  background-color: #2563EB;
+}
+.bg-red-500 {
+  background-color: #EF4444;
+}
+.hover\:bg-red-600:hover {
+  background-color: #DC2626;
+}
+.transition {
+  transition: all 0.3s ease;
+}
+
+.containerNewButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1%;
+}
+
+.new-tour-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #28a745; /* Green background */
+  color: #ffffff; /* White text */
+  padding: 10px 20px; /* Padding inside the button */
+  border-radius: 8px; /* Rounded corners */
+  text-decoration: none; /* Remove underline */
+  font-size: 16px; /* Font size */
+  font-weight: bold; /* Bold text */
+  transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+.new-tour-button:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+.new-tour-button .fa-plus,
+.new-tour-button .bi-plus {
+  margin-right: 8px; /* Space between icon and text */
+  font-size: 18px; /* Adjust icon size */
+}
+
+
+
 .rotate-\[-90deg\] {
   --tw-rotate: -90deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));

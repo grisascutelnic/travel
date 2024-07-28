@@ -2,7 +2,7 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
->
+      xmlns="http://www.w3.org/1999/html">
 <head>
 
     <meta charset="UTF-8">
@@ -14,70 +14,13 @@
 <body class="font-primary">
     <main class="w-full">
     <section class="w-full h-[100vh]  bg-header  bg-cover bg-no-repeat bg-center bg-color1 bg-blend-multiply bg-opacity-60 " >
-        <section class="w-full flex flex-wrap justify-center ">
-            <header 
-            class="w-[85%]  xl:w-[73%]  container hidden lg:flex justify-between h-[60px]  items-center py-[45px] border-b-[1px] border-white border-opacity-40">
-            <figure class="w-[140px]">
-               <img src="/img/just_logo.png" alt="logo" class="w-[100%]">
-            </figure>
-            <nav class="h-[100%] md:w-[70%]">
-                <ul class="h-[100%] flex items-center gap-8 justify-end">
-                    <li class="list-none  "><a class="decoration-none text-white hover:text-color3 transition-all duration-500"
-                            href="">Home</a></li>
-                    <li class="list-none"><a class="decoration-none text-white  hover:text-color3 transition-all duration-500"
-                            href="">About</a></li>
-                    <li class="list-none "><a class="decoration-none text-white  hover:text-color3 transition-all duration-500"
-                            href="">Tours</a></li>
-                    <li class="list-none"><a class="decoration-none text-white  hover:text-color3 transition-all duration-500"
-                            href="">Destination</a></li>
-                    <li class="list-none "><a class="decoration-none text-white  hover:text-color3 transition-all duration-500"
-                            th:href="@{/login}">Login</a></li>
-                    <li class="list-none"><a class="decoration-none text-white  hover:text-color3 transition-all duration-500"
-                            th:href="@{/register}">Register</a></li>
-                    <li class="list-none"><a class="decoration-none text-white  hover:text-color3 transition-all duration-500"
-                            th:href="@{/users}" sec:authorize="hasRole('ADMIN')">Users</a></li>
-                </ul>
-            </nav>
-        </header>
 
- <!-- header for mobile -->
- <header
- class="w-[95%] sm:w-[70%] md:w-[80%] container flex h-[60px] justify-between  items-center  lg:hidden  py-[45px] relative border-b-[1px] border-white border-opacity-40 ">
- <figure class="w-[140px]">
-    <img src="/img/logo-light.png" alt="" class="w-[100%]">
- </figure>
- <div class=" w-1/2 h-full flex justify-end items-center ">
-     <i class="bi bi-list text-3xl text-white cursor-pointer ham-menu-icon"></i>
- </div>
- <nav class="menu hidden h-[400px] w-full absolute bg-white left-0 top-[90px]   z-30 ">
-     <ul class="h-full w-full flex flex-col  justify-center ms-6">
-         <li class="list-none my-3"><a
-                 class="decoration-none text-color2 flex hover:text-color4  transition-all duration-600"
-                 href="">Home</a></li>
-         <li class="list-none my-3"><a
-                 class="decoration-none text-color2 flex  hover:text-color4  transition-all duration-600"
-                 href="">About</a></li>
-         <li class="list-none my-3"><a
-                 class="decoration-none text-color2 flex  hover:text-color4 transition-all duration-600"
-                 href="">Tours</a></li>
-         <li class="list-none my-3"><a
-                 class="decoration-none text-color2 flex  hover:text-color4 transition-all duration-600"
-                 href="">Destination</a></li>
-         <li class="list-none my-3"><a
-                 class="decoration-none text-color2 flex   hover:text-color4  transition-all duration-600"
-                 href="">Blog</a></li>
-         <li class="list-none my-3"><a
-                 class="decoration-none text-color2 flex  hover:text-color4  transition-all duration-600"
-                 href="">Gallery</a></li>
-         <li class="list-none my-3"><a
-                 class="decoration-none text-color2 flex   hover:text-color4 transition-all duration-600"
-                 href="">Contact</a></li>
-     </ul>
- </nav>
-</header>
-<!-- end header mobile  -->
+<!--        Begin Navigation Bar______________________________________________________________________-->
 
-    </section>
+        <div th:replace="~{/fragments/navbar :: navbar}"></div>
+
+        <!--        End Navigation Bar _______________________________________________________________________-->
+
    <section class="w-full flex justify-center mt-[180px]">
     <div class="w-[700px] md:w-[900px] container h-auto  ">
         <p class="w-full text-center uppercase text-white tracking-widest [word-spacing:8px] mb-4">Lets travel the world with us</p>
@@ -160,142 +103,53 @@
                         <p class="text-color4 uppercase px-5">Choose your place</p>
                         <p class="text-5xl font-secondary text-color3 px-5">Popular <span class="text-color1">Tours</span></p>
 
-            <div class="flex flex-wrap justify-between gap-10 px-6 xl:px-0 py-8 lg:px-3">
-                <!-- Adjust the width and flex-grow properties for each figure -->
-                <figure class="w-full md:w-[30%] flex-grow md:flex-grow-0 h-[450px] relative photo transition-all duration-1000" th:each="tour : ${tours}">
-                    <div class="w-full h-full bottom-photo absolute bg-white flex flex-col justify-center px-5">
-                        <p class="text-3xl text-color3 capitalize font-secondary" th:text="${tour.country}"></p>
-                        <p class="text-color1 mb-4" th:text="${' $' + tour.price + ' / per person'}"></p>
-                        <p class="text-color6" th:text="${tour.description}"></p>
-                        <div class="flex flex-wrap my-4">
-                            <div class="w-[50%] flex"><i class="bi bi-clock text-color4"></i><p class="text-color6 ms-2" th:text="${tour.days} + ' days'"></p></div>
-                            <div class="w-[50%] flex"><i class="bi bi-geo-alt text-color4"></i><p class="text-color6 ms-2" th:text="${tour.country}"></p></div>
-                        </div>
-                        <a href="" class="underline decoration-color1 text-color6 flex mb-2">Tour details</a>
-                    </div>
-                    <img th:src="'data:image/jpeg;base64,' + ${tour.base64Image}" alt="" class="w-full h-full object-cover brightness-75 absolute">
+            <br><br>
+            <a th:href="@{/newTour}" class="new-tour-button">
+                <i class="icon-plus"></i>Add New Tour
+            </a>
 
-                    <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-1 top-12 rotate-[-90deg]" th:text="${tour.country}"></p>
-                    <figcaption class="absolute text-white bottom-8 right-10 fig">
-                        <p class="capitalize font-secondary text-3xl" th:text="${tour.country}"></p>
-                        <p class="text-right" th:text="${' $' + tour.price + ' / per person'}"></p>
-                    </figcaption>
-                    <div class="absolute top-2 right-2 z-10 flex gap-2">
-                        <a th:href="@{/editTour(id=${tour.id})}" class="bg-blue-500 text-white px-4 py-2 rounded inline-flex items-center justify-center">
-                            Edit
+
+
+            <div class="flex flex-wrap justify-between gap-10 px-6 xl:px-0 py-8 lg:px-3">
+                <span class="w-full md:w-[30%]" th:each="tour : ${tours}">
+                    <figure class="w-full flex-grow md:flex-grow-0 h-[450px] relative photo transition-all duration-1000">
+                        <div class="w-full h-full bottom-photo absolute bg-white flex flex-col justify-center px-5">
+                            <p class="text-3xl text-color3 capitalize font-secondary" th:text="${tour.country}"></p>
+                            <p class="text-color1 mb-4" th:text="${' $' + tour.price + ' / per person'}"></p>
+                            <p class="text-color6" th:text="${tour.description}"></p>
+                            <div class="flex flex-wrap my-4">
+                                <div class="w-[50%] flex"><i class="bi bi-clock text-color4"></i><p class="text-color6 ms-2" th:text="${tour.days} + ' days'"></p></div>
+                                <div class="w-[50%] flex"><i class="bi bi-geo-alt text-color4"></i><p class="text-color6 ms-2" th:text="${tour.city}"></p></div>
+                            </div>
+                            <a href="" class="underline decoration-color1 text-color6 flex mb-2">Detalii</a>
+                        </div>
+                        <img th:src="'data:image/jpeg;base64,' + ${tour.base64Image}" alt="" class="w-full h-full object-cover brightness-75 absolute">
+
+                        <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-1 top-12 rotate-[-90deg]" th:text="${tour.country}"></p>
+                        <figcaption class="absolute text-white bottom-8 right-10 fig">
+                            <p class="capitalize font-secondary text-3xl" th:text="${tour.city}"></p>
+                            <p class="text-right" th:text="${' $' + tour.price + ' / per person'}"></p>
+                        </figcaption>
+                    </figure>
+<!--                    <div class="flex justify-center items-center mt-4 mb-4" sec:authorize="hasAnyRole('ADMIN', 'MOD')">-->
+                        <div class="flex justify-center items-center mt-4 mb-4">
+                        <a th:href="@{/editTour(id=${tour.id})}" class="bg-blue-500 text-white px-4 py-2 rounded inline-flex items-center justify-center hover:bg-blue-600 transition duration-300" style="border-radius: 8px;">
+                            <i class="bi bi-pencil mr-2"></i>Edit
                         </a>
+
+                        <span style="flex: 1; max-width: 10%;"></span>
+
                         <form th:action="@{/deleteTour/{id}(id=${tour.id})}" method="post" onsubmit="return confirm('Are you sure you want to delete this tour?');">
                             <input type="hidden" name="_method" value="delete" />
-                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded inline-flex items-center justify-center">
-                                Delete
+                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded inline-flex items-center justify-center hover:bg-red-600 transition duration-300" style="border-radius: 8px;">
+                                <i class="bi bi-trash mr-2"></i>Delete
                             </button>
                         </form>
                     </div>
-                </figure>
+
+
+                </span>
             </div>
-
-            <!--                                <figure class="w-full md:w-[45%] xl:w-[30%] h-[450px] relative photo transition-all duration-1000 ">-->
-<!--                                        <div class="w-[100%] h-[100%] bottom-photo absolute bg-white flex flex-col justify-center px-5">-->
-<!--                                                <p class="text-3xl text-color3 capitalize font-secondary">Roma</p>-->
-<!--                                                <p class="text-color1 mb-4">$1.300 / per persons</p>-->
-<!--                                                <p class="text-color6">Travel non lorem ac erat susce bibendum nulla facilisi. Sedeuter nunc voluat miss conse viventa amet vestibulum.</p>-->
-<!--                                                <div class="flex flex-wrap my-4">-->
-<!--                                                        <div class="w-[50%] flex"><i class="bi bi-clock text-color4"></i><p class="text-color6 ms-2">6 Days</p></div>-->
-<!--                                                        <div class="w-[50%] flex"><i class="bi bi-geo-alt text-color4"></i><p class="text-color6 ms-2">Italy</p></div>-->
-<!--                                                        <div class="w-[50%] flex"><i class="bi bi-person text-color4"></i></i><p class="text-color6 ms-2">10+</p></div>-->
-<!--                                                        <div class="w-[50%] flex"><i class="bi bi-emoji-smile text-color4"></i></i><p class="text-color6 ms-2"> 9.5 Superb</p></div>-->
-<!--                                                </div>-->
-<!--                                                <a href="" class="underline decoration-color1 text-color6 flex mb-2">Tour details</a>-->
-<!--                                        </div>-->
-<!--                                        <img src="/img/2.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">-->
-<!--                                        <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-1 top-12 rotate-[-90deg] ">italy</p>-->
-<!--                                        <figcaption class="absolute text-white bottom-8 right-10 fig">-->
-<!--                                                <p class="capitalize font-secondary text-3xl">Roma</p>-->
-<!--                                                <p class="text-right">$1.300 / per persons</p>-->
-<!--                                        </figcaption>-->
-<!--                                </figure>-->
-
-<!--                                <figure class="w-full md:w-[45%] xl:w-[30%] h-[450px] relative photo transition-all duration-1000">-->
-<!--                                        <div class="w-[100%] h-[100%] bottom-photo absolute bg-white flex flex-col justify-center px-5">-->
-<!--                                                <p class="text-3xl text-color3 capitalize font-secondary">France</p>-->
-<!--                                                <p class="text-color1 mb-4">$400 / per persons</p>-->
-<!--                                                <p class="text-color6">Travel non lorem ac erat susce bibendum nulla facilisi. Sedeuter nunc voluat miss conse viventa amet vestibulum.</p>-->
-<!--                                                <div class="flex flex-wrap my-4">-->
-<!--                                                        <div class="w-[50%] flex"><i class="bi bi-clock text-color4"></i><p class="text-color6 ms-2">10 Days</p></div>-->
-<!--                                                        <div class="w-[50%] flex"><i class="bi bi-geo-alt text-color4"></i><p class="text-color6 ms-2">France</p></div>-->
-<!--                                                        <div class="w-[50%] flex"><i class="bi bi-person text-color4"></i></i><p class="text-color6 ms-2">6+</p></div>-->
-<!--                                                        <div class="w-[50%] flex"><i class="bi bi-emoji-smile text-color4"></i></i><p class="text-color6 ms-2">9.5 Superb</p></div>-->
-<!--                                                </div>-->
-<!--                                                <a href="" class="underline decoration-color1 text-color6 flex mb-2">Tour details</a>-->
-<!--                                        </div>-->
-<!--                                        <img src="/img/france1.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">-->
-<!--                                        <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-1 top-12 rotate-[-90deg] ">France</p>-->
-<!--                                        <figcaption class="absolute text-white bottom-8 right-10 fig">-->
-<!--                                                <p class="capitalize font-secondary text-3xl">France</p>-->
-<!--                                                <p class="text-right">$400 / per persons</p>-->
-<!--                                        </figcaption>-->
-<!--                                </figure>-->
-<!--                                <figure class="w-full md:w-[45%] xl:w-[30%] h-[450px] relative photo transition-all duration-1000 ">-->
-<!--                                        <div class="w-[100%] h-[100%] bottom-photo absolute bg-white flex flex-col justify-center px-5">-->
-<!--                                                <p class="text-3xl text-color3 capitalize font-secondary">greece tour</p>-->
-<!--                                                <p class="text-color1 mb-4">$500 / per persons</p>-->
-<!--                                                <p class="text-color6">Travel non lorem ac erat susce bibendum nulla facilisi. Sedeuter nunc voluat miss conse viventa amet vestibulum.</p>-->
-<!--                                                <div class="flex flex-wrap my-4">-->
-<!--                                                        <div class="w-[50%] flex"><i class="bi bi-clock text-color4"></i><p class="text-color6 ms-2">10 Days</p></div>-->
-<!--                                                        <div class="w-[50%] flex"><i class="bi bi-geo-alt text-color4"></i><p class="text-color6 ms-2">greece</p></div>-->
-<!--                                                        <div class="w-[50%] flex"><i class="bi bi-person text-color4"></i></i><p class="text-color6 ms-2">12+</p></div>-->
-<!--                                                        <div class="w-[50%] flex"><i class="bi bi-emoji-smile text-color4"></i></i><p class="text-color6 ms-2">9.3 Superb</p></div>-->
-<!--                                                </div>-->
-<!--                                                <a href="" class="underline decoration-color1 text-color6 flex mb-2">Tour details</a>-->
-<!--                                        </div>-->
-<!--                                        <img src="/img/greece1.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">-->
-<!--                                        <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-[-15px] top-12 rotate-[-90deg] ">greece</p>-->
-<!--                                        <figcaption class="absolute text-white bottom-8 right-10 fig">-->
-<!--                                                <p class="capitalize font-secondary text-3xl">greece tours</p>-->
-<!--                                                <p class="text-right">$500 / per persons</p>-->
-<!--                                        </figcaption>-->
-<!--                                </figure>-->
-<!--                                <figure class="w-full md:w-[45%] xl:w-[30%] h-[450px] relative photo transition-all duration-1000 ">-->
-<!--                                        <div class="w-[100%] h-[100%] bottom-photo absolute bg-white flex flex-col justify-center px-5">-->
-<!--                                                <p class="text-3xl text-color3 capitalize font-secondary">Canada tour</p>-->
-<!--                                                <p class="text-color1 mb-4">$300 / per persons</p>-->
-<!--                                                <p class="text-color6">Travel non lorem ac erat susce bibendum nulla facilisi. Sedeuter nunc voluat miss conse viventa amet vestibulum.</p>-->
-<!--                                                <div class="flex flex-wrap my-4">-->
-<!--                                                        <div class="w-[50%] flex"><i class="bi bi-clock text-color4"></i><p class="text-color6 ms-2">7 Days</p></div>-->
-<!--                                                        <div class="w-[50%] flex"><i class="bi bi-geo-alt text-color4"></i><p class="text-color6 ms-2">canada</p></div>-->
-<!--                                                        <div class="w-[50%] flex"><i class="bi bi-person text-color4"></i></i><p class="text-color6 ms-2">10+</p></div>-->
-<!--                                                        <div class="w-[50%] flex"><i class="bi bi-emoji-smile text-color4"></i></i><p class="text-color6 ms-2"> 9.3 Superb</p></div>-->
-<!--                                                </div>-->
-<!--                                                <a href="" class="underline decoration-color1 text-color6 flex mb-2">Tour details</a>-->
-<!--                                        </div>-->
-<!--                                        <img src="/img/canada1.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">-->
-<!--                                        <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-[-15px] top-12 rotate-[-90deg] ">canada</p>-->
-<!--                                        <figcaption class="absolute text-white bottom-8 right-10 fig">-->
-<!--                                                <p class="capitalize font-secondary text-3xl">canada tours</p>-->
-<!--                                                <p class="text-right">$300 / per persons</p>-->
-<!--                                        </figcaption>-->
-<!--                                </figure>-->
-<!--                                <figure class="w-full md:w-[45%] xl:w-[30%] h-[450px] relative photo transition-all duration-1000 ">-->
-<!--                                        <div class="w-[100%] h-[100%] bottom-photo absolute bg-white flex flex-col justify-center px-5">-->
-<!--                                                <p class="text-3xl text-color3 capitalize font-secondary">dubai</p>-->
-<!--                                                <p class="text-color1 mb-4">$200 / per persons</p>-->
-<!--                                                <p class="text-color6">Travel non lorem ac erat susce bibendum nulla facilisi. Sedeuter nunc voluat miss conse viventa amet vestibulum.</p>-->
-<!--                                                <div class="flex flex-wrap my-4">-->
-<!--                                                        <div class="w-[50%] flex"><i class="bi bi-clock text-color4"></i><p class="text-color6 ms-2">7 Days</p></div>-->
-<!--                                                        <div class="w-[50%] flex"><i class="bi bi-geo-alt text-color4"></i><p class="text-color6 ms-2">dubai</p></div>-->
-<!--                                                        <div class="w-[50%] flex"><i class="bi bi-person text-color4"></i></i><p class="text-color6 ms-2">10+</p></div>-->
-<!--                                                        <div class="w-[50%] flex"><i class="bi bi-emoji-smile text-color4"></i></i><p class="text-color6 ms-2">9.8 Superb</p></div>-->
-<!--                                                </div>-->
-<!--                                                <a href="" class="underline decoration-color1 text-color6 flex mb-2">Tour details</a>-->
-<!--                                        </div>-->
-<!--                                        <img src="/img/44-1.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">-->
-<!--                                        <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-[-15px] top-12 rotate-[-90deg] ">dubai</p>-->
-<!--                                        <figcaption class="absolute text-white bottom-8 right-10 fig">-->
-<!--                                                <p class="capitalize font-secondary text-3xl">dubai</p>-->
-<!--                                                <p class="text-right">$200 / per persons</p>-->
-<!--                                        </figcaption>-->
-<!--                                </figure>-->
-<!--                        </div>-->
         </div>
     </section>
     <section class="w-full bg-sea py-32 relative bg-cover bg-fixed flex justify-center after:content-[''] after:absolute after:w-[100%] after:h-[100%] after:bg-black after:bg-opacity-50 after:top-0">
